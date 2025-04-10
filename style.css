@@ -1,0 +1,11 @@
+.card-image{
+  max-height:300px;
+  object-fit: cover;;
+}
+
+.card-info h3{
+  font-weight:600;
+}
+.card-info h5{
+  font-weight:600;
+}
