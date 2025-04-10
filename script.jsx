@@ -1,7 +1,7 @@
 const { createRoot } = ReactDOM;
 const { useState, useEffect, useMemo, memo } = React;
 
-function PoliticianCard ({ politician }) {
+const PoliticianCard = memo(({ politician }) => {
   console.log("Card")
   return (
     <div className="col-3">
@@ -15,12 +15,10 @@ function PoliticianCard ({ politician }) {
       </div> 
     </div> 
   ) 
-};
-
-const MemoizedPoliticianCard = memo(PoliticianCard);
+});
 
 const App = () => {
-  const [politicians, setPoliticians] = useState([]);
+  const [ politicians, setPoliticians ] = useState([]);
   const [ search, setSearch ] = useState('');
 
   async function getPolitician() {
@@ -46,7 +44,6 @@ const App = () => {
   }, [search, politicians]);
 
   return (
-    <>
     <div className="container pt-4">
       <h1 className="text-center">Politicians</h1>
       <div>
@@ -62,11 +59,10 @@ const App = () => {
       </div>
       <div className="row p-3">
         {filteredPoliticians.map((politician, index) => (
-          <MemoizedPoliticianCard politician={politician} key={index} />
+          <PoliticianCard politician={politician} key={index} />
         ))}
       </div>
     </div>
-    </>
   );
 }
 
